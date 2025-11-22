@@ -1,0 +1,11 @@
+.dropdownContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  z-index: 4;
+}
+
+.dropdownSelected {
+  background-color: hsl(243, 23%, 30%);
+  border-radius: 8px;
+}

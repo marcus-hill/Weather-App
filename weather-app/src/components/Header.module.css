@@ -1,0 +1,65 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unitsContainer {
+  display: flex;
+  gap: calc(5rem / 16);
+  background-color: hsl(243, 27%, 20%);
+  color: hsl(250, 6%, 84%);
+  padding: calc(15rem / 16) calc(20rem / 16);
+  border-radius: 10px;
+}
+
+.unitsContainer:hover {
+  cursor: pointer;
+}
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdownContainer {
+  position: absolute;
+  color: hsl(250, 6%, 84%);
+  background-color: hsl(243, 27%, 20%);
+  width: calc(200rem / 16);
+  margin-top: calc(10rem / 16);
+  border-radius: 10px;
+  padding: calc(15rem / 16) calc(15rem / 16);
+  display: flex;
+  right: calc(4rem / 16);
+  flex-direction: column;
+  gap: calc(10rem / 16);
+  z-index: 1;
+}
+
+.switchText {
+  margin-bottom: calc(15rem / 16);
+  font-size: calc(17rem / 16);
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  font-weight: 550;
+  font-family: "DMSans", sans-serif;
+}
+
+.switchText:hover {
+  cursor: pointer;
+}
+
+.unitHeading {
+  color: hsl(240, 6%, 70%);
+  font-size: calc(15rem / 16);
+  padding-left: 0.5rem;
+}
+
+.horizontalLine {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid hsl(240, 2%, 43%);
+  margin: 1em 0;
+  padding: 0;
+}

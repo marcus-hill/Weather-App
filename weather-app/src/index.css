@@ -1,0 +1,64 @@
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* ensure container fills viewport */
+}
+
+@font-face {
+  font-family: "BricolageGrotesque";
+  src: url("../assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("../assets/fonts/DMSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("../assets/fonts/DMSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("../assets/fonts/DMSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("../assets/fonts/DMSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("../assets/fonts/DMSans-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+body {
+  font-family: "DMSans", sans-serif;
+}
+
+.visually-hidden {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+  clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+  white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}
