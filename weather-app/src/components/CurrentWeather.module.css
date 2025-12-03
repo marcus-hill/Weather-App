@@ -1,0 +1,119 @@
+.currentWeatherWrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topCurrentWrapper {
+  background-image: url("../assets/images/bg-today-small.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 15px;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.loadingWeatherWrapper {
+  background-color: hsl(243, 23%, 24%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  color: hsl(250, 6%, 84%);
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.loadingIcon {
+  width: 1.5rem;
+}
+
+.loadingBar {
+  width: 1rem;
+}
+
+.currentCityTitle {
+  color: white;
+  text-align: center;
+  font-size: calc(30rem / 16);
+  font-weight: 550;
+  max-width: 80%;
+}
+
+.currentDate {
+  color: rgb(201, 201, 201);
+  font-size: calc(16rem / 16);
+  margin-top: 1rem;
+}
+
+.currentWeatherIcon {
+  width: 7rem;
+}
+
+.currentWeatherTemperature {
+  font-size: calc(90rem / 16);
+  color: white;
+  font-style: italic;
+}
+
+.currentWeatherInformationWrapper {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.statisticsCurrentWrapper {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.currentStatistic {
+  background-color: hsl(243, 23%, 24%);
+  color: hsl(250, 6%, 84%);
+  border-radius: 10px;
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.currentStatisticTitle {
+  color: hsl(0, 0%, 73%);
+  margin-bottom: 1rem;
+}
+
+.currentStatisticText {
+  color: white;
+  font-size: calc(25rem / 16);
+}
+
+@media (min-width: 80rem) {
+  .statisticsCurrentWrapper {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  .currentWeatherInformationWrapper {
+    margin-top: 0;
+  }
+
+  .currentWeatherWrapper {
+    margin-top: 0;
+  }
+}

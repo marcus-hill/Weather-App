@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useMemo, useCallback } from "react";
 import SearchCityApi from "../api/searchCityApi";
+import RetrieveWeather from "../api/retrieveWeather";
 
 const AppContext = createContext();
 
@@ -10,6 +11,8 @@ const initialState = {
   selectedCity: 0,
   loadingSearch: false,
   loadingWeather: false,
+  displayingWeather: false,
+  weather: 0,
 };
 
 const dispatchOptions = {
@@ -19,6 +22,7 @@ const dispatchOptions = {
   UPDATE_SELECTED_CITY: "UPDATE_SELECTED_CITY",
   UPDATE_LOADING_SEARCH: "UPDATE_LOADING_SEARCH",
   UPDATE_LOADING_WEATHER: "UPDATE_LOADING_WEATHER",
+  UPDATE_DISPLAYING_WEATHER: "UPDATE_DISPLAYING_WEATHER",
 };
 
 function reducer(state, action) {
@@ -35,6 +39,10 @@ function reducer(state, action) {
       return { ...state, loadingSearch: action.payload };
     case dispatchOptions.UPDATE_LOADING_WEATHER:
       return { ...state, loadingWeather: action.payload };
+    case dispatchOptions.UPDATE_WEATHER:
+      return { ...state, weather: action.payload };
+    case dispatchOptions.UPDATE_DISPLAYING_WEATHER:
+      return { ...state, displayingWeather: action.payload };
   }
 }
 
@@ -45,9 +53,29 @@ export function AppProvider({ children }) {
     dispatch({ type: dispatchOptions.TOGGLE_UNIT });
   };
 
-  const updateSelectedCity = (id) => {
-    dispatch({ type: dispatchOptions.UPDATE_SELECTED_CITY });
-  };
+  const updateSelectedCity = useCallback(
+    async (city) => {
+      dispatch({ type: dispatchOptions.UPDATE_LOADING_WEATHER, payload: true });
+
+      dispatch({ type: dispatchOptions.UPDATE_SELECTED_CITY, payload: city });
+
+      console.log("Update Selected City - App Context");
+      console.log(city);
+
+      const weather = await RetrieveWeather({ city: city, metric: state.unit === "metric" });
+      console.log(weather.data);
+
+      dispatch({ type: dispatchOptions.UPDATE_WEATHER, payload: weather.data });
+
+      dispatch({ type: dispatchOptions.UPDATE_LOADING_WEATHER, payload: false });
+
+      dispatch({ type: dispatchOptions.UPDATE_DISPLAYING_WEATHER, payload: true });
+
+      console.log("Loading Weather: " + state.loadingWeather);
+      console.log("Displaying Weather: " + state.displayingWeather);
+    },
+    [state]
+  );
 
   const updateDisplayingCityOptions = (displaying) => {
     dispatch({ type: dispatchOptions.DISPLAYING_CITY_OPTIONS, payload: displaying });
@@ -63,12 +91,15 @@ export function AppProvider({ children }) {
 
   const loadCityOptions = useCallback(
     async (searchTerm) => {
+      dispatch({ type: dispatchOptions.UPDATE_LOADING_SEARCH, payload: true });
+
       const cityOptions = await SearchCityApi({ query: searchTerm });
-      console.log(cityOptions);
+      // console.log(cityOptions);
       const cities = cityOptions.data.results ? Object.values(cityOptions.data.results) : [];
-      console.log(cities.length);
+      // console.log(cities.length);
       dispatch({ type: dispatchOptions.UPDATE_CITY_OPTIONS, payload: cities });
       dispatch({ type: dispatchOptions.DISPLAYING_CITY_OPTIONS, payload: true });
+      dispatch({ type: dispatchOptions.UPDATE_LOADING_SEARCH, payload: false });
     },
     [dispatch]
   );

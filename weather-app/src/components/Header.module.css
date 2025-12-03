@@ -33,7 +33,7 @@
   right: calc(4rem / 16);
   flex-direction: column;
   gap: calc(10rem / 16);
-  z-index: 1;
+  z-index: 3;
 }
 
 .switchText {

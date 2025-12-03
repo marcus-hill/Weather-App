@@ -14,12 +14,26 @@
   background-position: 10px center;
   outline: 0;
   border: none;
+  width: 90%;
   padding: 0.8rem 2rem 0.8rem 2.4rem;
   color: hsl(250, 6%, 84%);
   font-size: calc(15rem / 16);
   border-radius: 10px;
 }
 
+.loadingIcon {
+  margin-right: 0.5rem;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .searchCityInput::placeholder {
   color: hsl(250, 6%, 84%);
   font-size: calc(15rem / 16);
@@ -29,10 +43,9 @@
   border: none;
   border-radius: 10px;
   outline: none;
-  height: 100%;
+  width: 100%;
   padding: 0.7rem 1rem;
   font-size: calc(17rem / 16);
-  margin-left: 0.5rem;
   color: white;
   background-color: hsl(233, 67%, 56%);
   font-weight: 500;
@@ -44,18 +57,18 @@
 }
 
 .dropdownWrapper {
+  margin: 0 1rem;
   position: relative;
-  /* display: flex; */
+  width: 100%;
 }
 
 .dropdownContainer {
   position: absolute;
   color: hsl(250, 6%, 84%);
   background-color: hsl(243, 27%, 20%);
-  width: calc(200rem / 16);
+  width: 100%;
   margin-top: calc(10rem / 16);
   border-radius: 10px;
-  padding: calc(10rem / 16);
   display: flex;
   flex-direction: column;
   gap: calc(10rem / 16);
@@ -70,11 +83,35 @@
 }
 
 .searchResultCity {
-  padding: calc(10rem / 16) 0 calc(10rem / 16) calc(8rem / 16);
+  padding: calc(15rem / 16) 0 calc(15rem / 16) calc(15rem / 16);
+  display: flex;
+  align-items: center;
 }
 
 .searchResultCity:hover {
   cursor: pointer;
   background-color: hsl(243, 23%, 30%);
   border-radius: 10px;
+}
+
+@media (min-width: 60rem) {
+  .searchCityInput {
+    min-width: 25rem;
+  }
+
+  .formWrapper {
+    flex-direction: row;
+  }
+
+  .searchCityButton {
+    min-width: 8rem;
+  }
+
+  .dropdownContainer {
+    max-width: 29rem;
+  }
+
+  .dropdownWrapper {
+    width: unset;
+  }
 }
