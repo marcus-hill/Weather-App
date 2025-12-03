@@ -1,6 +1,7 @@
-import { createContext, useContext, useReducer, useMemo, useCallback } from "react";
+import { createContext, useContext, useReducer, useEffect, useMemo, useCallback } from "react";
 import SearchCityApi from "../api/searchCityApi";
 import RetrieveWeather from "../api/retrieveWeather";
+import RetrieveIpDetails from "../api/returnIpDetails";
 
 const AppContext = createContext();
 
@@ -52,6 +53,30 @@ export function AppProvider({ children }) {
   const toggleUnit = () => {
     dispatch({ type: dispatchOptions.TOGGLE_UNIT });
   };
+
+  console.log("App Provider Rendered");
+
+  useEffect(() => {
+    async function getGeoWeather() {
+      try {
+        dispatch({ type: dispatchOptions.UPDATE_LOADING_WEATHER, payload: true });
+        const ipDetails = await RetrieveIpDetails();
+        const weather = await RetrieveWeather({ city: { latitude: ipDetails.data.latitude, longitude: ipDetails.data.longitude }, metric: state.unit === "metric" });
+        console.log(weather);
+        dispatch({ type: dispatchOptions.UPDATE_SELECTED_CITY, payload: { name: ipDetails.data.city, country: ipDetails.data.region } });
+
+        dispatch({ type: dispatchOptions.UPDATE_WEATHER, payload: weather.data });
+        dispatch({ type: dispatchOptions.UPDATE_LOADING_WEATHER, payload: false });
+        dispatch({ type: dispatchOptions.UPDATE_DISPLAYING_WEATHER, payload: true });
+      } catch (error) {
+        console.log(error);
+      }
+
+      // const weather = await RetrieveWeather({ city: { latitude: position.coords.latitude, longitude: position.coords.longitude }, metric: state.unit === "metric" });
+    }
+    console.log("HERE1");
+    getGeoWeather();
+  }, []);
 
   const updateSelectedCity = useCallback(
     async (city) => {

@@ -3,6 +3,7 @@ import classes from "./CurrentWeather.module.css";
 import ReturnWeatherCodeImage from "../api/returnWeatherCodeImage";
 import LoadingIcon from "../assets/images/icon-loading.svg";
 import clsx from "clsx";
+import RetrieveWeather from "../api/retrieveWeather";
 
 const CurrentWeather = ({ className }) => {
   const { state } = useAppContext();

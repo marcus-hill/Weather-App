@@ -41,21 +41,16 @@ const HourlyForecast = ({ className }) => {
 
       const dateFormatted = dateObject.toISOString().split("T")[0];
       if (!output[dateFormatted]) {
-        console.log("PUSHING");
         output[dateFormatted] = [];
       }
 
       if (isThisHourOrFuture(dateObject.getTime())) {
-        console.log("HERE");
+        console.log("pushing");
         output[dateFormatted].push(time);
-
-        console.log(output[dateFormatted] + "-----!!!");
       }
     }
 
     setSelectedDay(Object.keys(output)[0]);
-
-    console.log("Selected Day: " + selectedDay);
 
     return output;
   }, [state.displayingWeather]);
@@ -70,8 +65,7 @@ const HourlyForecast = ({ className }) => {
       return output;
     }
 
-    console.log("Selected Day: " + selectedDay);
-
+    console.log(hourlyForecast[selectedDay]);
     const limit = Math.min(8, hourlyForecast[selectedDay].length);
 
     for (let i = 0; i < limit; i++) {
@@ -86,8 +80,6 @@ const HourlyForecast = ({ className }) => {
           <p className={classes.temperature}>{state.weather.hourly.temperature_2m[timeStampNumber].toFixed(0)}°</p>
         </div>
       );
-      console.log("Date: " + timeStampNumber);
-      console.log("Weather: " + state.weather.hourly.temperature_2m[timeStampNumber]);
     }
 
     return output;

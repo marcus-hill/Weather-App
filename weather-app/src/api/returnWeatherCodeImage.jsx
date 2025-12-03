@@ -28,11 +28,8 @@ const icons = {
 };
 
 const ReturnWeatherCodeImage = ({ code }) => {
-  console.log("HERE: " + code);
   for (const category in weatherMap) {
     if (weatherMap[category].includes(code)) {
-      console.log("CATEGORY:");
-      console.log(icons[category]);
       const icon = icons[category];
       return icons[category];
     }
